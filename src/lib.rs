@@ -1,4 +1,5 @@
 pub mod debug;
+pub mod element;
 pub mod physics;
 pub mod time;
 pub mod transform;
@@ -83,10 +84,3 @@ impl Quaternion {
         na::UnitQuaternion::from_quaternion(q)
     }
 }
-
-/*
-mod common {
-    use crate::wasm_binding;
-    use crate::{Quaternion, Vector3};
-}
-*/

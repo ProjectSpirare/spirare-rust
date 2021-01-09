@@ -1,7 +1,7 @@
-use crate::common::ElementIndex;
-use crate::common::{ResourceIndex, Vector3};
+use crate::physics::Physics;
 use crate::transform::Transform;
-use crate::{physics::Physics, transform};
+use crate::ElementIndex;
+use crate::ResourceIndex;
 
 pub struct Element {
     index: ElementIndex,
@@ -39,13 +39,13 @@ pub fn spawn_object_by_id(resource_id: &str) -> Result<Element, &str> {
     }
 }
 
-pub fn spawn_object(resource_index: ResourceIndex) -> ElementIndex {
+fn spawn_object(resource_index: ResourceIndex) -> ElementIndex {
     unsafe {
         return element_spawn_object(resource_index);
     }
 }
 
-pub fn get_resource_index_by_id(resource_id: &str) -> ResourceIndex {
+fn get_resource_index_by_id(resource_id: &str) -> ResourceIndex {
     unsafe {
         let ptr = resource_id.as_ptr() as usize;
         let len = resource_id.len();
