@@ -1,5 +1,5 @@
-use once_cell::sync::Lazy;
 use clap::Clap;
+use once_cell::sync::Lazy;
 
 use spirare::debug;
 use spirare::transform::Transform;
