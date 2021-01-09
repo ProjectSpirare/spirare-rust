@@ -1,11 +1,16 @@
 pub mod debug;
-pub mod transform;
-pub mod time;
 pub mod physics;
+pub mod time;
+pub mod transform;
+mod utils;
+mod wasm_binding;
 
 extern crate nalgebra as na;
 
 use std::ops;
+
+pub type ElementIndex = i32;
+pub type ResourceIndex = i32;
 
 // Vector3
 #[derive(Debug, Clone, Copy)]
@@ -79,114 +84,9 @@ impl Quaternion {
     }
 }
 
-mod utils {
-    pub fn str_to_ptr(text: &str) -> (usize, usize) {
-        let ptr = text.as_ptr() as usize;
-        let len = text.len();
-        return (ptr, len);
-    }
-}
-
-pub mod wasm_binding {
-    #[repr(C)]
-    pub struct Vector3 {
-        pub x: f32,
-        pub y: f32,
-        pub z: f32,
-    }
-
-    #[repr(C)]
-    pub struct Quaternion {
-        pub x: f32,
-        pub y: f32,
-        pub z: f32,
-        pub w: f32,
-    }
-}
-
+/*
 mod common {
-    pub use crate::wasm_binding;
-    pub use crate::{Quaternion, Vector3};
-
-    pub type ElementIndex = i32;
-    pub type ResourceIndex = i32;
-
-    pub fn vector3_to_wasm_vector3(vector: Vector3) -> wasm_binding::Vector3 {
-        wasm_binding::Vector3 {
-            x: vector.x,
-            y: vector.y,
-            z: vector.z,
-        }
-    }
-
-    pub fn quaternion_to_wasm_quaternion(rotation: Quaternion) -> wasm_binding::Quaternion {
-        wasm_binding::Quaternion {
-            x: rotation.x,
-            y: rotation.y,
-            z: rotation.z,
-            w: rotation.w,
-        }
-    }
+    use crate::wasm_binding;
+    use crate::{Quaternion, Vector3};
 }
-
-pub mod element {
-    use crate::common::ElementIndex;
-    use crate::common::{ResourceIndex, Vector3};
-    use crate::transform::Transform;
-    use crate::{physics::Physics, transform};
-
-    pub struct Element {
-        index: ElementIndex,
-    }
-
-    impl Element {
-        fn new(index: ElementIndex) -> Element {
-            Element { index }
-        }
-
-        pub fn myself() -> Element {
-            Element { index: 0 }
-        }
-
-        pub fn transform(&self) -> Transform {
-            Transform::new(self.index)
-        }
-
-        pub fn physics(&self) -> Physics {
-            Physics::new(self.index)
-        }
-    }
-
-    pub fn spawn_object_by_id(resource_id: &str) -> Result<Element, &str> {
-        let resource_index = get_resource_index_by_id(resource_id);
-        if resource_index < 0 {
-            Err("Resource not found")
-        } else {
-            let element_index = spawn_object(resource_index);
-            if element_index < 0 {
-                Err("Spawn failed")
-            } else {
-                Ok(Element::new(element_index))
-            }
-        }
-    }
-
-    pub fn spawn_object(resource_index: ResourceIndex) -> ElementIndex {
-        unsafe {
-            return element_spawn_object(resource_index);
-        }
-    }
-
-    pub fn get_resource_index_by_id(resource_id: &str) -> ResourceIndex {
-        unsafe {
-            let ptr = resource_id.as_ptr() as usize;
-            let len = resource_id.len();
-            return element_get_resource_index_by_id(ptr, len);
-        }
-    }
-
-    extern "C" {
-        fn element_spawn_object(resource_id: i32) -> ElementIndex;
-        fn element_get_resource_index_by_id(ptr: usize, len: usize) -> ResourceIndex;
-    }
-}
+*/

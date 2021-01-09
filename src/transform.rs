@@ -1,7 +1,9 @@
-pub use crate::common::ElementIndex;
-
-use crate::common::{quaternion_to_wasm_quaternion, vector3_to_wasm_vector3};
-use crate::{wasm_binding, Quaternion, Vector3};
+use crate::utils::quaternion_to_wasm_quaternion;
+use crate::utils::vector3_to_wasm_vector3;
+use crate::wasm_binding;
+use crate::ElementIndex;
+use crate::Quaternion;
+use crate::Vector3;
 
 pub struct Transform {
     index: ElementIndex,

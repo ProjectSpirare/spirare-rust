@@ -1,7 +1,13 @@
+use crate::utils::vector3_to_wasm_vector3;
+use crate::wasm_binding;
+use crate::ElementIndex;
+use crate::Vector3;
+/*
 use crate::{
-    common::{vector3_to_wasm_vector3, ElementIndex},
+    // common::{vector3_to_wasm_vector3, ElementIndex},
     wasm_binding, Vector3,
 };
+*/
 
 pub struct Physics {
     index: ElementIndex,
