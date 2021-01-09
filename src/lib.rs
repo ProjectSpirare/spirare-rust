@@ -133,7 +133,7 @@ pub mod element {
     use crate::common::ElementIndex;
     use crate::common::{ResourceIndex, Vector3};
     use crate::transform::Transform;
-    use crate::{physics::physics::Physics, transform};
+    use crate::{physics::Physics, transform};
 
     pub struct Element {
         index: ElementIndex,
