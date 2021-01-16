@@ -10,29 +10,41 @@ pub struct Transform {
 }
 
 impl Transform {
-    pub fn get_local_position(&self) -> Vector3 {
+    pub fn local_position(&self) -> Vector3 {
         get_local_position(self.index)
     }
     pub fn set_local_position(&self, position: Vector3) {
         set_local_position(self.index, position)
     }
-    pub fn get_world_position(&self) -> Vector3 {
+    pub fn world_position(&self) -> Vector3 {
         get_world_position(self.index)
     }
     pub fn set_world_position(&self, position: Vector3) {
         set_world_position(self.index, position)
     }
-    pub fn get_local_rotation(&self) -> Quaternion {
+    pub fn local_rotation(&self) -> Quaternion {
         get_local_rotation(self.index)
     }
     pub fn set_local_rotation(&self, rotation: Quaternion) {
         set_local_rotation(self.index, rotation)
     }
-    pub fn get_world_rotation(&self) -> Quaternion {
+    pub fn world_rotation(&self) -> Quaternion {
         get_world_rotation(self.index)
     }
     pub fn set_world_rotation(&self, rotation: Quaternion) {
         set_world_rotation(self.index, rotation)
+    }
+    pub fn local_scale(&self) -> Vector3 {
+        get_local_scale(self.index)
+    }
+    pub fn set_local_scale(&self, scale: Vector3) {
+        set_local_scale(self.index, scale)
+    }
+    pub fn world_scale(&self) -> Vector3 {
+        get_world_scale(self.index)
+    }
+    pub fn set_world_scale(&self, scale: Vector3) {
+        set_world_position(self.index, scale)
     }
 
     pub fn new(index: ElementIndex) -> Transform {
@@ -44,7 +56,7 @@ impl Transform {
     }
 
     pub fn forward(self) -> Vector3 {
-        let q = self.get_world_rotation();
+        let q = self.world_rotation();
         q.forward()
     }
 }
